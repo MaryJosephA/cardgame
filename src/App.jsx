@@ -14,6 +14,8 @@ export default function App() {
   const [disabled, setDisabled] = useState(false)
   const [turns, setTurns] = useState(0)
   const [points, setPoints] = useState(0)
+  const [restorgame, setRestorGame] = useState([])
+  
 
   
   useEffect(() => {
@@ -28,10 +30,6 @@ export default function App() {
   useEffect(() => {
     checkScore();
   }, [score])
-
-  // useEffects(() =>{
-  //  saveGame()
-  // }, [cards])
 
   useEffect(() => {
   const resizeListener = window.addEventListener('resize', resizeBoard)
@@ -95,13 +93,11 @@ export default function App() {
     setTurns(0);
   }
 
-  // const saveGame = () => {
-  //   setSolved([]);
-  //   setCards(initializeDeck());
-  //   setFlipped([]);
-  //   setDisabled(false);
-  //   setTurns(0);
-  // }
+  const divStyle = {        
+   display: 'flex',      
+   flexDirection: 'row',        
+   justifyContent: 'center'    };
+
 
 
 
@@ -127,14 +123,23 @@ export default function App() {
 
  
     <div>
-      <h1>Memory Card Game</h1>
+      <h1>Memory Game</h1>
       <h2>Click the cards to  play</h2>
       <h3> You took {turns} turns</h3>
-      <Gameover 
+      <div style={divStyle}>
+      <button 
+      className="SaveGame" onClick={() => setRestorGame(setFlipped([]),checkScore(),setSolved([]),setDisabled(false))}>Save Game</button> 
+      <button className="restart" onClick={() => newGame()}>Restart Game</button>
+      </div>
+      <div className="points">Games Won: {points} </div>
+      {/* <Gameover 
       newGame={newGame}
       points={points}
-      />
+      restorgame={restorgame}
+      /> */}
+      
       <Board
+       
         dimension={dimension}
         cards={cards}
         flipped={flipped}
