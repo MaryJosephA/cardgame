@@ -6,6 +6,7 @@ import './styles.css'
 
 export default function Board({dimension, cards, flipped, solved, handleClick, disabled}) {
   return (
+    <div className='deck'>
     <div className='board'>
       {
         cards.map((card) => (<Card
@@ -23,7 +24,7 @@ export default function Board({dimension, cards, flipped, solved, handleClick, d
         )
         )   }
     </div>
-    
+    </div>
   )  }
 Board.propTypes ={
    
